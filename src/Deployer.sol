@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity >=0.8.0;
 
-import { Test, console } from "../lib/forge-std/src/Test.sol";
+import { Test, console } from "forge-std/Test.sol";
 import { IEntryPoint } from "./interfaces/IEntryPoint.sol";
 
 contract EntryPointDeployer is Test {
@@ -9,15 +9,15 @@ contract EntryPointDeployer is Test {
     //                    Deployment utilities                    //
     ////////////////////////////////////////////////////////////////
 
-    function deploy(bytes memory creationBytecode) private returns (address contractAddress) {
+    function deployEntryPointCreationCode(bytes memory creationBytecode) private returns (address contractAddress) {
         assembly {
             contractAddress := create(0, add(creationBytecode, 0x20), mload(creationBytecode))
         }
-        require(contractAddress != address(0), "BytecodeDeployer: deployment failed");
+        require(contractAddress != address(0), "deployEntryPointCreationCode failed");
     }
 
     function deployEntryPoint() internal returns (IEntryPoint entrypoint) {
-        entrypoint = IEntryPoint(deploy(ENTRYPOINT_V0_7_0));
+        entrypoint = IEntryPoint(deployEntryPointCreationCode(ENTRYPOINT_V0_7_0));
     }
 
     ////////////////////////////////////////////////////////////////

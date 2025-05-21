@@ -1,7 +1,8 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity >=0.8.0;
 
-import { Test, console } from "../lib/forge-std/src/Test.sol";
+import { Test, console } from "forge-std/Test.sol";
+
 import { EntryPointDeployer, IEntryPoint } from "../src/Deployer.sol";
 import { IStakeManager } from "../src/interfaces/IStakeManager.sol";
 import { INonceManager } from "../src/interfaces/INonceManager.sol";
