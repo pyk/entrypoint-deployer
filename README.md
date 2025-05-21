@@ -1,66 +1,33 @@
-## Foundry
+# EntryPoint Deployer
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+Simple helpers to deploy pre-compiled [ERC-4337](https://github.com/eth-infinitism/account-abstraction) contracts.
 
-Foundry consists of:
+## Installation
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
-
-## Documentation
-
-https://book.getfoundry.sh/
+```shell
+forge install entrypoint=pyk/entrypoint-deployer@v0.7.0
+```
 
 ## Usage
 
-### Build
+```solidity
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity >=0.8.0;
 
-```shell
-$ forge build
+import { Test, console } from "forge-std/src/Test.sol";
+import { EntryPointDeployer, IEntryPoint } from "entrypoint/Deployer.sol";
+
+contract EntryPointTest is Test, EntryPointDeployer {
+    IEntryPoint entryPoint;
+
+    function setUp() external {
+        entryPoint = deployEntryPoint();
+    }
+}
 ```
 
-### Test
+## Precompiles
 
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+| Name       | Version | Address                                                                                                               |
+| ---------- | ------- | --------------------------------------------------------------------------------------------------------------------- |
+| EntryPoint | v0.7.0  | [0x0000000071727De22E5E9d8BAf0edAc6f37da032](https://etherscan.io/address/0x0000000071727De22E5E9d8BAf0edAc6f37da032) |
