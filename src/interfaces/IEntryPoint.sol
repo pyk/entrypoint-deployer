@@ -14,8 +14,9 @@ import "./PackedUserOperation.sol";
 import "./IStakeManager.sol";
 import "./IAggregator.sol";
 import "./INonceManager.sol";
+import "./IERC165.sol";
 
-interface IEntryPoint is IStakeManager, INonceManager {
+interface IEntryPoint is IStakeManager, INonceManager, IERC165 {
     /**
      *
      * An event emitted after each successful request.
